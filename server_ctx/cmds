@@ -1,0 +1,14 @@
+./parallel_iud 10 10000 I T
+onmode -P start loopback
+cdr define server -I -S g_informix g_lb
+cdr change config "CDR_SUPPRESS_ATSRISWARN 2,3,4"
+./parallel_iud 5 100000 M T
+dbaccess ycsb load.sql
+#dbaccess ycsb unload.sql
+dbaccess ycsb /tmp/alter.sql
+cdr define repl rep1 -M g_informix -C always -S row -A -R "P ycsb@g_informix:informix.usertable" "select * from usertable" "R ycsb@g_lb:informix.usertable_new" "select * from usertable_new"
+cdr start repl rep1
+cdr check repl -r rep1 -m g_informix -a -R --name myjob
+cdr stats check -r 1 myjob
+cdr delete repl rep1
+dbaccess ycsb rename.sql
