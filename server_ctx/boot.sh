@@ -124,6 +124,7 @@ EOF"
            break
         fi
     fi
+    sleep 1
     retry=$(expr $retry + 1)
     if [ $retry -eq 120 ]
     then
@@ -143,6 +144,7 @@ case "$1" in
                HA_ALIAS=informix
                preStart
                su informix -c "oninit -ivy" 
+	       sleep 30
                wait4online
 	       sleep 5
                su informix -c "${INFORMIXDIR}/bin/dbaccess sysadmin@$primary_db - <<EOF

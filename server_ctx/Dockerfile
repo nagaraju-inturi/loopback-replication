@@ -26,10 +26,22 @@ ADD cmds /opt/ibm/
 ADD rename.sql /opt/ibm/
 ADD alter.sql /opt/ibm/
 ADD load.sql /opt/ibm/
-ADD ext_load.sql /opt/ibm/
-ADD ext_unload.sql /opt/ibm/
-ADD ext.sql /opt/ibm/
-ADD initpipe.sh /opt/ibm/
+#ADD ext_load.sql /opt/ibm/
+#ADD ext_unload.sql /opt/ibm/
+#ADD ext.sql /opt/ibm/
+#ADD initpipe.sh /opt/ibm/
+ADD 01_schema1.sh /opt/ibm/
+ADD 02_initload.sh /opt/ibm/
+ADD 03_apps.sh /opt/ibm/
+ADD 04_schema2.sh /opt/ibm/
+ADD 05_copydata.sh /opt/ibm/
+ADD 06_updcfg.sh /opt/ibm/
+ADD 07_defserv.sh /opt/ibm/
+ADD 08_defrepl.sh /opt/ibm/
+ADD 09_chkrepl.sh /opt/ibm/
+ADD 10_delrepl.sh /opt/ibm/
+ADD 11_rename.sh /opt/ibm/
+ADD 12_apps.sh /opt/ibm/
 
 USER root
 
